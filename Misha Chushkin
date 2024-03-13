@@ -1,8 +1,8 @@
 //
 //  main.cpp
-//  Sem1
+//  Labba111
 //
-//  Created by Михаил on 28.02.2024.
+//  Created by Михаил on 13.03.2024.
 //
 
 #include <iostream>
@@ -11,10 +11,10 @@
 
 using namespace std;
 
-class Vector 
+class Vector
     {
     double* Chleni = nullptr;
-    int size = 0;
+    int size;
 
     public:
 
@@ -34,7 +34,9 @@ class Vector
         size = n;
         Chleni = new double[size];
         }
-
+        
+    Vector() : Chleni(nullptr), size(0) {};
+        
     Vector(Vector& V1) //конструктор копированя
         {
         size = V1.size;
@@ -99,6 +101,7 @@ class Vector
 
     friend istream& operator >> (istream& in, Vector& V) //перегрузка вывода
         {
+        in >> V.size;
         for (int i = 0; i < V.size; ++i)
             {
             in >> V.Chleni [i];
@@ -129,7 +132,7 @@ class Vector
         }
     };
 
-int main() 
+int main()
     {
     ifstream inputFile ("in.txt");
     
@@ -138,14 +141,14 @@ int main()
         cout << "Файл не открыт" << endl;
         return 1;
         }
-
-    int a;
-    int b;
-    inputFile >> a >> b;
-
-    Vector V1 (a);
-    Vector V2 (b);
+    
+    Vector V1;
+    Vector V2;
+    
     inputFile >> V1  >> V2;
+    
+    cout << V1 << "\n";
+    cout << V2 << "\n";
     
     inputFile.close();
 
